@@ -3,9 +3,9 @@ import numpy as np
 # implement focus detection by method of laplacion operator
 def laplace_alg(img_arr):
 
-  laplace_kernel = np.array([0, 1, 0
-                             [1, -4, 1],
-                             0, 1, 0])
+  laplace_kernel = np.array([[0, 1, 0],
+                              [1, -4, 1],
+                              [0, 1, 0]])
 
   # ----------- CONVOLUTION -----------
   img_h, img_w = img_arr.shape
