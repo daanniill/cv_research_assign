@@ -2,15 +2,15 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-src = Path("/dataset")
+src = Path("dataset")
 
 dataset = {}
 
 for img_set in src.iterdir():
   if img_set.is_dir(): 
-    dataset[img_set.name] = [] # organize based on each specific set of images
+    dataset[img_set.name] = {} # organize based on each specific set of images
 
-    for quadrant in img_set:
+    for quadrant in img_set.iterdir():
       if quadrant.is_dir():
         dataset[img_set.name][quadrant.name] = []
 
@@ -23,3 +23,4 @@ for img_set in src.iterdir():
               dataset[img_set.name][quadrant.name].append(img_array) #add image array to that specific set of images
           except Exception as e:
             print(f"Error converting {img_path.name} in {img_set.name}/{quadrant.name}: {e}")
+
