@@ -23,4 +23,3 @@ for img_set in src.iterdir():
               dataset[img_set.name][quadrant.name].append(img_array) #add image array to that specific set of images
           except Exception as e:
             print(f"Error converting {img_path.name} in {img_set.name}/{quadrant.name}: {e}")
-
