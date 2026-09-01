@@ -7,7 +7,7 @@ def laplace_alg(img_arr):
                              [1, -4, 1],
                              0, 1, 0])
 
-  # convolution 
+  # ----------- CONVOLUTION -----------
   img_h, img_w = img_arr.shape
   k_h, k_w = laplace_kernel.shape
 
@@ -22,7 +22,9 @@ def laplace_alg(img_arr):
       # getting cur window 3x3
       window = img_arr[y:y+k_h, x:x+k_w]
       # Mult and sum elements
-      output[y,x ] = np.sum(window * laplace_kernel)
+      output[y, x] = np.sum(window * laplace_kernel)
+
+  # ----------- FINAL OUT -----------
 
   # calculating variance
   mean_val = np.mean(output)
