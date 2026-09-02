@@ -1,7 +1,13 @@
 import numpy as np
 
 # implement focus detection by method of laplacion operator
+# appply slight gaussian blur to reduce noise before running through laplacian operator
 def laplace_alg(img_arr):
+
+  # Gaussian Kernel normalized by 1/16th
+  gaussian_kernel = np.array([[1, 2, 1],
+                              [2, 4, 2],
+                              [1, 2, 1]]) / 16.0
 
   laplace_kernel = np.array([[0, 1, 0],
                               [1, -4, 1],
@@ -9,18 +15,29 @@ def laplace_alg(img_arr):
 
   # ----------- CONVOLUTION -----------
   img_h, img_w = img_arr.shape
-  k_h, k_w = laplace_kernel.shape
+  gk_h, gk_w = gaussian_kernel.shape
+  lk_h, lk_w = laplace_kernel.shape
+
+  # blurred image dims and arr
+  blur_h = img_h - gk_h + 1
+  blur_w = img_w - gk_w + 1
+  blurred_img = np.zeros((blur_h, blur_w))
+
+  for y in range(blur_h):
+        for x in range(blur_w):
+            window = img_arr[y:y+gk_h, x:x+gk_w]
+            blurred_img[y, x] = np.sum(window * gaussian_kernel)
 
   # output dims
-  out_h = img_h - k_h + 1
-  out_w = img_w -k_w + 1
+  out_h = blur_h - lk_h + 1
+  out_w = blur_w - lk_w + 1
   output = np.zeros((out_h, out_w))
 
   # sliding kernel across image
   for y in range(out_h):
     for x in range(out_w):
       # getting cur window 3x3
-      window = img_arr[y:y+k_h, x:x+k_w]
+      window = blurred_img[y:y+lk_h, x:x+lk_w]
       # Mult and sum elements
       output[y, x] = np.sum(window * laplace_kernel)
 
