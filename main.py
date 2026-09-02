@@ -8,7 +8,7 @@ src = Path("dataset")
 
 dataset = {}
 
-for img_set in islice(src.iterdir(), 4):   # just the first dataset folder (12 images)
+for img_set in src.iterdir():   # just the first dataset folder (12 images)
   if img_set.is_dir(): 
     dataset[img_set.name] = {} # organize based on each specific set of images
 
@@ -38,7 +38,14 @@ for img_set, quadrants in dataset.items():
 
     for img_name, img_array in images:
       try:
-        variance = laplace_alg(img_array)
+        height, width = img_array.shape
+
+        if quadrant in ("Q1", "Q4"):
+            roi = img_array[:, width // 2:]
+        else:  # Q2 and Q3
+            roi = img_array[:, :width // 2]
+
+        variance = laplace_alg(roi)
         results[img_set][quadrant].append((img_name, variance))
       except Exception as e:
         print(f"Error processing {img_name} in {img_set}/{quadrant}: {e}")
