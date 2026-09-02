@@ -1,13 +1,21 @@
 import numpy as np
 
+def generate_gaussian_kernel(size, sigma):
+  if size % 2 == 0:
+      raise ValueError("Gaussian kernel size must be odd")
+
+  coordinates = np.arange(size) - size // 2
+  x, y = np.meshgrid(coordinates, coordinates)
+
+  kernel = np.exp(-(x**2 + y**2) / (2 * sigma**2))
+  return kernel / np.sum(kernel)
+
 # implement focus detection by method of laplacion operator
 # appply slight gaussian blur to reduce noise before running through laplacian operator
 def laplace_alg(img_arr):
 
   # Gaussian Kernel normalized by 1/16th
-  gaussian_kernel = np.array([[1, 2, 1],
-                              [2, 4, 2],
-                              [1, 2, 1]]) / 16.0
+  gaussian_kernel = generate_gaussian_kernel(7, 2.5)
 
   laplace_kernel = np.array([[0, 1, 0],
                               [1, -4, 1],

@@ -8,7 +8,7 @@ src = Path("dataset")
 
 dataset = {}
 
-for img_set in islice(src.iterdir(), 1):   # just the first dataset folder (12 images)
+for img_set in islice(src.iterdir(), 4):   # just the first dataset folder (12 images)
   if img_set.is_dir(): 
     dataset[img_set.name] = {} # organize based on each specific set of images
 
