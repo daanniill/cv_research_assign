@@ -19,7 +19,7 @@
 | Q3 | 10/10 | 0/10 | 100% |
 | Q4 | 7/10 | 3/10 | 70% |
 
-> Q4 frequently contains very few visible objects or objects that are difficult to distinguish from sensor noise.
+
 
 ## AF_Stacks_20251006_200731
 

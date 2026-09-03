@@ -15,7 +15,7 @@ def generate_gaussian_kernel(size, sigma):
 def laplace_alg(img_arr):
 
   # Gaussian Kernel normalized by 1/16th
-  gaussian_kernel = generate_gaussian_kernel(11, 2.5)
+  gaussian_kernel = generate_gaussian_kernel(15, 2.5)
 
   laplace_kernel = np.array([[0, 1, 0],
                               [1, -4, 1],
