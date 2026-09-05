@@ -115,8 +115,8 @@ The final plot shows the success rate for each of the ten image set folders:
 
 The algorithm failed on four of the 40 image sets:
 
-| Folder | Quadrant | Predicted | Ground truth | Likely reason |
-|---|:---:|---|---|---|
+| Folder | Quadrant | Predicted | Ground truth | 
+|---|:---:|---|---|
 | 200301 | Q4 | `diag_X_V55.240.png` | `diag_X+1_V56.240.png` |
 | 200516 | Q4 | `diag_X_V57.240.png` | `diag_X-1_V56.240.png` |
 | 201145 | Q2 | `diag_X_V53.850.png` | `diag_X-1_V52.850.png` |
