@@ -130,7 +130,7 @@ Three of the four failures occurred in Q4. This quadrant frequently contains ver
 
 The final method achieved 90% accuracy, showing that a laplacian based approach paired with Gaussian Blurring is effective for most of the provided image sets. It was particularly reliable for Q1 and Q3, where it correctly classified all 20 image sets, and it also performed well on Q2.
 
-I believe this method should transfer reasonably well to new similar sets with similar quadrant structure and heavy noise, however, it may require some tuning to images captured on different sensors due to the Gaussian Blur being specifically tuned to this data set and sensor data. The algorithm is also less dependable when a quadrant contains few visible objects or edges.
+I believe this method should transfer reasonably well to new similar sets with similar quadrant structure and heavy noise, however the algorithm is less dependable when a quadrant contains few visible objects or edges or when the data is not sorted out into specific quadrants.
 
 Another issue arises from the low margin predictions that the algorithm produces with some quadrants having a 1-2% difference in the focus scores between images. These results may be categorized as uncertain.
 

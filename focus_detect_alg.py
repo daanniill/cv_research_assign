@@ -95,12 +95,17 @@ def process_data(src):
 
           if quadrant in ("Q1", "Q4"):
               roi = img_array[:, width // 2:]
-          else:  # Q2 and Q3
+          elif quadrant in ("Q2", "Q3"):
               roi = img_array[:, :width // 2]
+          else:
+              raise ValueError(f"Unrecognized quadrant '{quadrant}', expected Q1-Q4")
 
           variance = laplace_alg(roi)
           results[img_set][quadrant].append((img_name, variance))
         except Exception as e:
           print(f"Error processing {img_name} in {img_set}/{quadrant}: {e}")
+
+      if not results[img_set][quadrant]:
+        raise RuntimeError(f"No usable images for {img_set}/{quadrant}")
 
   return results
